@@ -3,43 +3,58 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-
-        Student st = new Student(001, "san tola", "santola123@gmail.com");
-
-        st.Display();
-
         Scanner input = new Scanner(System.in);
 
-        System.out.println("please enter your name: ");
+        System.out.println("===== Create New Student =====");
 
+        System.out.print("Enter ID: ");
+        int id = input.nextInt();
+        input.nextLine(); // clear buffer
+
+        System.out.print("Enter Name: ");
         String name = input.nextLine();
 
-        System.out.println("------------------------");
+        System.out.print("Enter Email: ");
+        String email = input.nextLine();
 
+        Student st = new Student(id, name, email);
 
+        System.out.println("\n===== Student Information =====");
+        st.display();
+
+        input.close();
     }
-
-
-
 }
 
 class Student {
-    int id;
-    String name;
-    String email;
+    private int id;
+    private String name;
+    private String email;
+    private boolean active;
 
-
+    // Constructor
     Student(int id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.active = true; // default active
     }
 
+    // Display method
+    public void display() {
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Email: " + email);
+        System.out.println("Active: " + active);
+    }
 
-    void Display() {
+    // Deactivate student
+    public void deactivate() {
+        this.active = false;
+    }
 
-        System.out.println("id" + id);
-        System.out.print("name: " +  name);
-        System.out.print("email: " +email);
+    // Update email
+    public void updateEmail(String newEmail) {
+        this.email = newEmail;
     }
 }
